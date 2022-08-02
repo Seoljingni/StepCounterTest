@@ -14,8 +14,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.stepcountertest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
+
+    lateinit var binding: ActivityMainBinding
 
     private var sensorManager: SensorManager? = null
 
@@ -27,8 +30,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     val ACTIVITY_RECOGNITION_REQUEST_CODE = 100
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
         //만약 permission이 아직 허가되지 않았다면 permission을 요청 하는 것
@@ -77,6 +82,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
             //현재 걸음 수를 텍스트로 나타냄
             steps_counter_tv.text = ("$currentSteps")
+
+            binding.stepsCounterTv.text = steps_counter_tv.toString()
         }
     }
 
